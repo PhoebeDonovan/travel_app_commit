@@ -73,3 +73,5 @@ app.post('/addEntry', (req, res) => {
     // Send a response indicating successful addition of the entry
     res.send('Entry added successfully');
 });
+
+module.exports = app;
