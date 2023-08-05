@@ -8,9 +8,6 @@ const weatherBitApiKey = '80aee9f45fa64af9a37f78ca57292048';
 const pixabayApiKey = '38378808-06119754e49cc79e1d83890eb';
 const visualCrossing = '6V2W7DPS5FP4QDZ4TCN4DR9QT';
 
-// Event listener to add function to existing HTML DOM element
-document.getElementById('generate').addEventListener('click', generateButtonClicked);
-
 /* Function to fetch weather data */
 async function generateButtonClicked() {
   const city = document.getElementById('city').value;
@@ -83,9 +80,9 @@ async function generateButtonClicked() {
     }
     //Update DOM
     document.getElementById('imageHeader').innerHTML = imageHeaderHTML;
-  
+ 
     // Retrieve weather data
-    if (!startDate == d && !endDate == d) {
+    if (startDate != d && endDate != d) {
       // Use Visual Crossing API for dates other than current date
       const visualCrossingUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}/${startDate.toISOString()}/${endDate.toISOString()}?key=${visualCrossing}`;
       const visualCrossingResponse = await fetch(visualCrossingUrl);
@@ -114,15 +111,17 @@ async function generateButtonClicked() {
         
       // Update the weatherData div with the generated HTML
       document.getElementById('weatherData').innerHTML = weatherDataHTML;
-      } else {
-      // Use Weatherbit API for dates other than current day
+    } else {
+      // Use Weatherbit API for current day
       const weatherBitResponse = await fetch(
-      `https://api.weatherbit.io/v2.0/forecast/daily?lat=${latitude}&lon=${longitude}&days=1&key=${weatherBitApiKey}`
-    );
-    if (!weatherBitResponse.ok) {
-      throw new Error('Error: ' + weatherBitResponse.status);
-    }
-    const weatherBitData = await weatherBitResponse.json();
+        `https://api.weatherbit.io/v2.0/forecast/daily?lat=${latitude}&lon=${longitude}&days=1&key=${weatherBitApiKey}`
+      );
+
+      if (!weatherBitResponse.ok) {
+        throw new Error('Error: ' + weatherBitResponse.status);
+      }
+
+      const weatherBitData = await weatherBitResponse.json();
 
       // Process and display weatherbit data for each date
       let weatherDataHTML = '';
@@ -150,6 +149,7 @@ async function generateButtonClicked() {
     console.log(error);
   }
 }
+
 /* Function to POST data */
 // Client-side function to make a POST request and add an entry
 async function addEntry(url, entryData) {
