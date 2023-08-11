@@ -210,27 +210,9 @@ button:focus {
 /* Media query for portrait tablets and large phones */
 @media screen and (min-width: 481px) and (max-width: 768px) {
     #app {
-        display: grid;
-        height:100%;
-        background-image: url("https://images.unsplash.com/photo-1690315854810-dfeb1c763c27?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80");
-        background-position: center; 
-        background-repeat: no-repeat; 
-        background-size: cover; 
-        color: #000;
         font-size: 0.5rem;
-        font-family: 'Oswald', sans-serif;
         grid-template-rows: 0.6fr 0.5fr 0.5fr 5fr; 
-        grid-template-columns: repeat (2, 1fr); 
-        grid-template-areas:
-            "header header"
-            "city dates1"
-            "dates2 button"
-            "forecast pic";
-        align-content: center;
-        justify-content: center;
-        width: 100%;
-        margin: 0;
-        padding: 0;
+        grid-template-columns: repeat (4, 1fr); 
     }
 
     .holder_headline {
@@ -287,20 +269,7 @@ button:focus {
     }
 
     button {
-        grid-area: button;
-        width: 100%;
-        height: auto;
-        background: rgb(2, 17, 89);
-        color: #f5a9a9;
         font-size: 1.5rem;
-        text-shadow: 2px 2px 0 #000;
-        font-family: 'Oswald', sans-serif;
-        font-weight: bolder;
-        border-radius: 5px;
-        box-shadow: 2px 4px 5px #000;
-        padding: 1rem;
-        display: block;
-        margin: 1rem 0;
     }
     
     button:hover {
@@ -314,27 +283,31 @@ button:focus {
     .holder_entry {
         background: rgba(2, 17, 89, 0.653);
         grid-area: forecast;
+        max-width: 35vw;
     }
 
     .title {
-        display: flex;    
+        display: flex;
+        grid-area: forecast;   
         justify-content: center;
         align-content: center;
         color: #fff;
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
 
     #weatherData {
         grid-area: forecast;
         overflow-y: auto; /* Add a vertical scrollbar when content exceeds the container height */
         padding: 1rem; 
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
 
     /* Image countainer, layout and styling */
     .holder_image {
         grid-area: pic;
         contain: strict;
+        width: 100%;
+        height: 100%;
     }
  
     h4 {
@@ -353,6 +326,7 @@ button:focus {
     #countryImage {
         width: 100%;
         height: 100%;
+        grid-area: pic;
         object-fit: cover;
         display: none;
         align-content: center;
@@ -365,19 +339,8 @@ button:focus {
 /* Media query for small screen devices */
 @media (max-width: 480px) {
     #app {
-        height: 100%;
-        width: 100%;
-        grid-template-areas:
-            "header"
-            "city"
-            "dates1"
-            "dates2"
-            "button"
-            "forecast"
-            "pic";
         grid-template-rows: auto auto auto auto auto auto auto;
         grid-template-columns: 1fr;
-        grid-gap: 0.5em;
         font-size: 0.9rem;
     }
 
@@ -385,38 +348,15 @@ button:focus {
         font-size: 2rem;
     }
 
-    label {
-        display:block;
+    button,
+    .holder_entry,
+    label,
+    input,
+    .title {
         font-size: 1rem;
-        font-weight: bold;
-        color: #fff;
-        text-shadow: 1.5px 1.5px #000;
     }
-
-    input {
-        display:block;
-        background: rgb(232, 240, 254);
-        color: #000;
-        font-size: 1rem;
-        font-family: 'Oswald', sans-serif;
-        border: none;
-        }
 
     /* Weather Data */
-    .holder_entry {
-        background: rgba(2, 17, 89, 0.653);
-        grid-area: forecast;
-        margin-top: 0.75rem;
-    }
-
-    .title {
-        display: flex;    
-        justify-content: center;
-        align-content: center;
-        color: #fff;
-        font-size: 1.25rem;
-    }
-
     #weatherData {
         grid-area: forecast;
         overflow-y: auto; /* Add a vertical scrollbar when content exceeds the container height */
@@ -437,7 +377,7 @@ button:focus {
         }
     
     #countryImage {
-        object-fit: contain;
+        object-fit: cover;
         display: none;
         height: 100%;
         width: 100%;
@@ -454,9 +394,5 @@ button:focus {
         display: grid;
         align-content: center;
         justify-content: center;
-    }
-
-    button {
-        font-size: 1rem;
     }
 }
