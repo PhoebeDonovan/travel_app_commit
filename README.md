@@ -18,6 +18,7 @@ The app will then display the following information:
 - Weather information for each day of your travel, including the date, weather conditions,        maximum temperature, and minimum temperature.
 
 Dependencies
+Compatible with node.js version 16.
 The Travel App relies on the following dependencies:
 
 Backend Dependencies
@@ -42,6 +43,18 @@ Geonames API (geoApiKey)
 WeatherBit API (weatherBitApiKey)
 Pixabay API (pixabayApiKey)
 Visual Crossing API (visualCrossing)
+
+Before running the app, check what version of node.js you have installed by running the following command:
+
+node -v
+
+If node.js v is higher than version 16 (ie version 17 or above) then uninstall this version by running the following command:
+
+npm uninstall node
+
+Then install node version 16 by running the following command:
+
+npm install node@16.16.0
 
 Before running the app, make sure to install the required dependencies by running the following command:
 
